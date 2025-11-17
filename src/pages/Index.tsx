@@ -64,11 +64,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <Icon name="Activity" className="text-primary-foreground" size={24} />
-            </div>
-          </div>
         </div>
       </header>
 
