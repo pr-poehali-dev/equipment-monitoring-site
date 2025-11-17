@@ -53,16 +53,14 @@ const DowntimeList = ({ downtimes, onResolve, onDelete }: DowntimeListProps) => 
                   </h3>
                   <p className="text-sm text-muted-foreground">{downtime.reason}</p>
                 </div>
-                <Badge variant={downtime.status === 'active' ? 'destructive' : 'secondary'}>
-                  {downtime.status === 'active' ? (
+                {downtime.status === 'active' && (
+                  <Badge variant="destructive">
                     <span className="flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-destructive-foreground animate-pulse" />
                       Активна
                     </span>
-                  ) : (
-                    'Завершена'
-                  )}
-                </Badge>
+                  </Badge>
+                )}
               </div>
 
               <div className="flex flex-wrap gap-4 text-sm">
