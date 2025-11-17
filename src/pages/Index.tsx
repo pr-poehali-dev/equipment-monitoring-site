@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import StatsOverview from '@/components/StatsOverview';
 import DowntimeList from '@/components/DowntimeList';
-import DowntimeForm from '@/components/DowntimeForm';
 
 export interface DowntimeRecord {
   id: string;
@@ -47,16 +44,7 @@ const Index = () => {
     }
   ]);
 
-  const [showForm, setShowForm] = useState(false);
 
-  const handleAddDowntime = (newDowntime: Omit<DowntimeRecord, 'id'>) => {
-    const downtime: DowntimeRecord = {
-      ...newDowntime,
-      id: Date.now().toString()
-    };
-    setDowntimes([downtime, ...downtimes]);
-    setShowForm(false);
-  };
 
   const handleResolveDowntime = (id: string, endTime: Date) => {
     setDowntimes(downtimes.map(dt => {
@@ -76,20 +64,14 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <Icon name="Activity" className="text-primary-foreground" size={24} />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">Мониторинг оборудования</h1>
-                <p className="text-sm text-muted-foreground">Отслеживание простоев и аналитика</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+              <Icon name="Activity" className="text-primary-foreground" size={24} />
             </div>
-            <Button onClick={() => setShowForm(!showForm)} className="gap-2">
-              <Icon name="Plus" size={18} />
-              Добавить остановку
-            </Button>
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">Мониторинг оборудования</h1>
+              <p className="text-sm text-muted-foreground">Отслеживание простоев и аналитика</p>
+            </div>
           </div>
         </div>
       </header>
@@ -97,15 +79,6 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-8">
           <StatsOverview downtimes={downtimes} />
-
-          {showForm && (
-            <Card className="p-6">
-              <DowntimeForm
-                onSubmit={handleAddDowntime}
-                onCancel={() => setShowForm(false)}
-              />
-            </Card>
-          )}
 
           <div>
             <div className="flex items-center gap-2 mb-4">
