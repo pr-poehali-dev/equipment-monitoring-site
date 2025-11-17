@@ -69,7 +69,6 @@ const Index = () => {
               <Icon name="Activity" className="text-primary-foreground" size={24} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Мониторинг оборудования</h1>
               <p className="text-sm text-muted-foreground">Отслеживание простоев и аналитика</p>
             </div>
           </div>
