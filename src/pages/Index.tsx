@@ -68,9 +68,6 @@ const Index = () => {
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Icon name="Activity" className="text-primary-foreground" size={24} />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Отслеживание простоев и аналитика</p>
-            </div>
           </div>
         </div>
       </header>
