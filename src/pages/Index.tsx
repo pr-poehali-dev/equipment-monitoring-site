@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import StatsOverview from '@/components/StatsOverview';
 import DowntimeList from '@/components/DowntimeList';
@@ -14,6 +15,7 @@ export interface DowntimeRecord {
 }
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState<'monitoring' | 'production' | 'statistics'>('monitoring');
   const [downtimes, setDowntimes] = useState<DowntimeRecord[]>([
     {
       id: '1',
@@ -63,7 +65,33 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-2">
+            <Button
+              variant={activeTab === 'monitoring' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('monitoring')}
+              className="gap-2"
+            >
+              <Icon name="Activity" size={18} />
+              Мониторинг
+            </Button>
+            <Button
+              variant={activeTab === 'production' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('production')}
+              className="gap-2"
+            >
+              <Icon name="Factory" size={18} />
+              Производство
+            </Button>
+            <Button
+              variant={activeTab === 'statistics' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('statistics')}
+              className="gap-2"
+            >
+              <Icon name="BarChart3" size={18} />
+              Статистика
+            </Button>
+          </div>
         </div>
       </header>
 
