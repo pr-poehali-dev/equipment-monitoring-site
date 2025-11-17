@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import StatsOverview from '@/components/StatsOverview';
 import DowntimeList from '@/components/DowntimeList';
+import ProductionTab from '@/components/ProductionTab';
+import StatisticsTab from '@/components/StatisticsTab';
 
 export interface DowntimeRecord {
   id: string;
@@ -96,21 +98,27 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="space-y-8">
-          <StatsOverview downtimes={downtimes} />
+        {activeTab === 'monitoring' && (
+          <div className="space-y-8">
+            <StatsOverview downtimes={downtimes} />
 
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Icon name="Clock" size={20} className="text-muted-foreground" />
-              <h2 className="text-xl font-semibold text-foreground">История остановок</h2>
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Icon name="Clock" size={20} className="text-muted-foreground" />
+                <h2 className="text-xl font-semibold text-foreground">История остановок</h2>
+              </div>
+              <DowntimeList
+                downtimes={downtimes}
+                onResolve={handleResolveDowntime}
+                onDelete={handleDeleteDowntime}
+              />
             </div>
-            <DowntimeList
-              downtimes={downtimes}
-              onResolve={handleResolveDowntime}
-              onDelete={handleDeleteDowntime}
-            />
           </div>
-        </div>
+        )}
+
+        {activeTab === 'production' && <ProductionTab />}
+
+        {activeTab === 'statistics' && <StatisticsTab downtimes={downtimes} />}
       </main>
     </div>
   );
